@@ -1,24 +1,25 @@
 #!/usr/bin/python3
-"""A module for generating Pascal's Triangle up to a specified number of rows."""
+"""Pascal Triangle Interview Challenge"""
+
 
 def pascal_triangle(n):
-    """return a list of lists of numbers
+    """returns a list of lists of numbers
     representing the pascal triangle"""
     if n <= 0:
         return []
 
     pascal_t = []
 
-    for r in range(n):
+    for i in range(n):
         pascal_t.append([])
-        pascal_t[r].append(1)
+        pascal_t[i].append(1)
 
-        for m in range(1, r):
-            s = pascal_t[r-1][m-1]
-            t = pascal_t[r-1][m]
-            pascal_t[r].append(s+t)
+        for j in range(1, i):
+            x = pascal_t[i-1][j-1]
+            y = pascal_t[i-1][j]
+            pascal_t[i].append(x+y)
 
-        if(n != 0 and r != 0):
-            pascal_t[r].append(1)
+        if(n != 0 and i != 0):
+            pascal_t[i].append(1)
 
     return pascal_t
