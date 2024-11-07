@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Solving the N Queens with Backtracing"""
+"""Solving N Queens with Backtracing"""
 import sys
 
 
@@ -14,22 +14,22 @@ def nqueens(n, y, board):
     Return: All possible solutions to
             placement, in list of lists form
     """
-    for r in range(n):
+    for x in range(n):
         hold = 0
-        for p in board:
-            if r == p[1]:
+        for q in board:
+            if x == q[1]:
                 hold = 1
                 break
-            if z - r == p[0] - p[1]:
+            if y - x == q[0] - q[1]:
                 hold = 1
                 break
-            if r - p[1] == p[0] - z:
+            if x - q[1] == q[0] - y:
                 hold = 1
                 break
         if hold == 0:
-            board.append([z, r])
-            if z != n - 1:
-                nqueens(n, z + 1, board)
+            board.append([y, x])
+            if y != n - 1:
+                nqueens(n, y + 1, board)
             else:
                 print(board)
             del board[-1]
