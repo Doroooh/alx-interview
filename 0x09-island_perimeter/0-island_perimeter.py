@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""Module for Island Perimeter
+"""Island Perimeter
 """
 
 
 def island_perimeter(grid):
-    """Returns the perimeter of the island described in grid.
+    """Return perimeter of the island described in grid.
 
     grid is a list of list of integers:
     - 0 represents water
@@ -31,20 +31,20 @@ def island_perimeter(grid):
     perimeter = 0
 
     # Looping
-    for i in range(rows):
-        for j in range(cols):
-            if grid[i][j] == 1:
+    for a in range(rows):
+        for b in range(cols):
+            if grid[a][b] == 1:
                 # Check the top edge
-                if i == 0 or grid[i-1][j] == 0:
+                if a == 0 or grid[a-1][b] == 0:
                     perimeter += 1
                 # Check the bottom edge
-                if i == rows-1 or grid[i+1][j] == 0:
+                if a == rows-1 or grid[a+1][b] == 0:
                     perimeter += 1
                 # Check the left edge
-                if j == 0 or grid[i][j-1] == 0:
+                if b == 0 or grid[a][b-1] == 0:
                     perimeter += 1
                 # Check the right edge
-                if j == cols-1 or grid[i][j+1] == 0:
+                if b == cols-1 or grid[a][b+1] == 0:
                     perimeter += 1
 
     # total perimeter
