@@ -1,54 +1,51 @@
 #!/usr/bin/python3
-"""Island perimeter computing module.
-This module contains a function that computes the perimeter of an island
-represented as a grid. The island is defined as 1s in the grid, and water
-is represented as 0s. The grid does not contain any lakes (i.e., water 
-inside the island), and the grid is completely surrounded by water.
+"""Module for Island Perimeter
 """
 
+
 def island_perimeter(grid):
-    """
-    Computes the perimeter of an island with no lakes.
+    """Returns the perimeter of the island described in grid.
+
+    grid is a list of list of integers:
+    - 0 represents water
+    - 1 represents land
+    Each cell is square, with a side length of 1
+    Cells are connected horizontally/vertically (not diagonally).
+    grid is rectangular, with its width and height not exceeding 100
+    The grid is completely surrounded by water
+    There is only one island (or nothing).
+    The island doesn’t have “lakes” (water inside that isn’t connected to
+    the water surrounding the island).
 
     Args:
-        grid (list of list of int): A grid where 1 represents land and 0 represents water.
-    
-    Returns:
-        int: The perimeter of the island.
-    """
-    perimeter = 0  # Initialize perimeter counter
+        grid (list of list of int): the grid representing the island
 
-    # Check if the input is a valid grid
-    if type(grid) != list:
-        return 0
-    
-    n = len(grid)  # Number of rows in the grid
-    
-    # Iterate through each row and cell in the grid
-    for i, row in enumerate(grid):
-        m = len(row)  # Number of columns in the current row
-        
-        for j, cell in enumerate(row):
-            if cell == 0:
-                # Skip water cells
-                continue
-            
-            # Determine the edges that contribute to the perimeter
-            edges = (
-                # Top edge: Cell is on the first row or the cell above is water
-                i == 0 or (len(grid[i - 1]) > j and grid[i - 1][j] == 0),
-                
-                # Right edge: Cell is on the last column or the cell to the right is water
-                j == m - 1 or (m > j + 1 and row[j + 1] == 0),
-                
-                # Bottom edge: Cell is on the last row or the cell below is water
-                i == n - 1 or (len(grid[i + 1]) > j and grid[i + 1][j] == 0),
-                
-                # Left edge: Cell is on the first column or the cell to the left is water
-                j == 0 or row[j - 1] == 0,
-            )
-            
-            # Add the number of edges that contribute to the perimeter
-            perimeter += sum(edges)
-    
+    Returns:
+        int: the perimeter of the island
+    """
+    # Determining number of rows and columns in the grid
+    rows = len(grid)
+    cols = len(grid[0])
+
+    # Initializing the perimeter variable to 0
+    perimeter = 0
+
+    # Looping
+    for i in range(rows):
+        for j in range(cols):
+            if grid[i][j] == 1:
+                # Check the top edge
+                if i == 0 or grid[i-1][j] == 0:
+                    perimeter += 1
+                # Check the bottom edge
+                if i == rows-1 or grid[i+1][j] == 0:
+                    perimeter += 1
+                # Check the left edge
+                if j == 0 or grid[i][j-1] == 0:
+                    perimeter += 1
+                # Check the right edge
+                if j == cols-1 or grid[i][j+1] == 0:
+                    perimeter += 1
+
+    # total perimeter
     return perimeter
