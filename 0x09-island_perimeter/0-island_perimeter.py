@@ -22,13 +22,13 @@ def island_perimeter(grid):
     if type(grid) != list:
         return 0
     
-    r = len(grid)  # Number of rows in the grid
+    n = len(grid)  # Number of rows in the grid
     
     # Iterate through each row and cell in the grid
-    for a, row in enumerate(grid):
-        s = len(row)  # Number of columns in the current row
+    for i, row in enumerate(grid):
+        m = len(row)  # Number of columns in the current row
         
-        for b, cell in enumerate(row):
+        for j, cell in enumerate(row):
             if cell == 0:
                 # Skip water cells
                 continue
@@ -36,16 +36,16 @@ def island_perimeter(grid):
             # Determine the edges that contribute to the perimeter
             edges = (
                 # Top edge: Cell is on the first row or the cell above is water
-                a == 0 or (len(grid[a - 1]) > b and grid[a - 1][b] == 0),
+                i == 0 or (len(grid[i - 1]) > j and grid[i - 1][j] == 0),
                 
                 # Right edge: Cell is on the last column or the cell to the right is water
-                b == s - 1 or (s > b + 1 and row[b + 1] == 0),
+                j == m - 1 or (m > j + 1 and row[j + 1] == 0),
                 
                 # Bottom edge: Cell is on the last row or the cell below is water
-                a == r - 1 or (len(grid[a + 1]) > b and grid[a + 1][b] == 0),
+                i == n - 1 or (len(grid[i + 1]) > j and grid[i + 1][j] == 0),
                 
                 # Left edge: Cell is on the first column or the cell to the left is water
-                b == 0 or row[b - 1] == 0,
+                j == 0 or row[j - 1] == 0,
             )
             
             # Add the number of edges that contribute to the perimeter
